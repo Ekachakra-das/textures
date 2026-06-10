@@ -1,9 +1,18 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>textures</title>
+    <title>Textures</title>
+    
+    <!-- SEO -->
+    <meta name="description" content="A curated collection of transparent textures and patterns for web design and digital art. Preview and download hundreds of free patterns.">
+    <meta name="keywords" content="transparent textures, patterns, backgrounds, web design, free textures, seamless patterns">
+    <meta property="og:title" content="Textures - Transparent Texture Library">
+    <meta property="og:description" content="Browse and download hundreds of transparent textures and patterns. Instant preview on any background.">
+    <meta property="og:url" content="https://textures.laulyam.com/">
+    <meta property="og:type" content="website">
+
     <style>
         :root {
             --bg-color: #f4f4f9;
@@ -11,6 +20,17 @@
             --text-color: #333;
             --primary-color: #007bff;
             --header-bg: rgba(255, 255, 255, 0.95);
+            --border-color: #ddd;
+            --info-bg: #ffffff;
+        }
+
+        body.dark-mode {
+            --bg-color: #121212;
+            --card-bg: #1e1e1e;
+            --text-color: #e0e0e0;
+            --header-bg: rgba(30, 30, 30, 0.95);
+            --border-color: #333;
+            --info-bg: #1e1e1e;
         }
 
         body {
@@ -19,7 +39,7 @@
             padding: 0;
             background-color: var(--bg-color);
             color: var(--text-color);
-            transition: background-color 0.3s ease;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
 
         header {
@@ -33,9 +53,10 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1), background 0.3s;
             backdrop-filter: blur(10px);
             gap: 2rem;
+            border-bottom: 1px solid var(--border-color);
         }
 
         body.scrolled header {
@@ -64,7 +85,7 @@
         .controls {
             display: flex;
             align-items: center;
-            gap: 1.5rem;
+            gap: 1rem;
             justify-content: flex-end;
         }
 
@@ -117,7 +138,7 @@
             text-transform: uppercase;
             position: relative;
             overflow: hidden;
-            border: 1px solid #ddd;
+            border: 1px solid var(--border-color);
             width: auto;
             padding: 0 12px;
             height: 30px;
@@ -148,10 +169,12 @@
 
         input[type="text"] {
             padding: 0.6rem 1rem;
-            border: 1px solid #ddd;
+            border: 1px solid var(--border-color);
             border-radius: 4px;
             width: 160px;
             font-size: 1rem;
+            background: var(--card-bg);
+            color: var(--text-color);
             transition: all 0.4s ease;
         }
 
@@ -163,9 +186,12 @@
 
         .settings-container {
             position: relative;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
-        .settings-btn {
+        .settings-btn, .theme-toggle-btn {
             background: none;
             border: none;
             cursor: pointer;
@@ -173,25 +199,32 @@
             display: flex;
             align-items: center;
             color: #666;
-            transition: color 0.2s, transform 0.2s;
+            transition: color 0.2s, transform 0.2s, background-color 0.2s;
             border-radius: 50%;
         }
 
-        .settings-btn svg {
+        body.dark-mode .settings-btn, body.dark-mode .theme-toggle-btn {
+            color: #aaa;
+        }
+
+        .settings-btn svg, .theme-toggle-btn svg {
             width: 28px;
             height: 28px;
             transition: all 0.4s ease;
         }
 
-        body.scrolled .settings-btn svg {
+        body.scrolled .settings-btn svg, body.scrolled .theme-toggle-btn svg {
             width: 24px;
             height: 24px;
         }
 
-        .settings-btn:hover {
+        .settings-btn:hover, .theme-toggle-btn:hover {
             color: var(--primary-color);
-            background-color: #f0f2f5;
-            transform: rotate(30deg);
+            background-color: rgba(0,0,0,0.05);
+        }
+
+        body.dark-mode .settings-btn:hover, body.dark-mode .theme-toggle-btn:hover {
+            background-color: rgba(255,255,255,0.05);
         }
 
         .settings-dropdown {
@@ -199,13 +232,14 @@
             position: absolute;
             top: 100%;
             right: 0;
-            background: white;
+            background: var(--card-bg);
             border-radius: 8px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.15);
             padding: 0.5rem;
             min-width: 150px;
             z-index: 1001;
             margin-top: 10px;
+            border: 1px solid var(--border-color);
         }
 
         .settings-dropdown.active {
@@ -218,12 +252,16 @@
             border-radius: 4px;
             font-size: 0.9rem;
             white-space: nowrap;
-            color: #444;
+            color: var(--text-color);
             transition: background 0.2s;
         }
 
         .settings-item:hover {
-            background-color: #f0f2f5;
+            background-color: rgba(0,0,0,0.05);
+        }
+
+        body.dark-mode .settings-item:hover {
+            background-color: rgba(255,255,255,0.05);
         }
 
         .settings-item.selected {
@@ -245,9 +283,10 @@
             border-radius: 8px;
             overflow: hidden;
             box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            transition: transform 0.2s, background-color 0.3s ease;
+            transition: transform 0.2s, background-color 0.3s ease, box-shadow 0.2s;
             display: flex;
             flex-direction: column;
+            border: 1px solid var(--border-color);
         }
 
         .card:hover {
@@ -258,7 +297,7 @@
             width: 100%;
             aspect-ratio: 16 / 9;
             background-color: #eee;
-            border-bottom: 1px solid rgba(0,0,0,0.05);
+            border-bottom: 1px solid var(--border-color);
             cursor: pointer;
             background-repeat: repeat;
             transition: background-color 0.3s ease;
@@ -269,7 +308,7 @@
             display: flex;
             flex-direction: column;
             gap: 0.5rem;
-            background: white;
+            background: var(--info-bg);
         }
 
         .card-title {
@@ -278,7 +317,7 @@
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
-            color: #333;
+            color: var(--text-color);
         }
 
         .card-actions {
@@ -316,10 +355,11 @@
         .modal-text {
             max-width: 800px;
             padding: 3rem;
-            background: rgba(255, 255, 255, 0.9);
+            background: var(--info-bg);
             border-radius: 12px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            color: #111;
+            color: var(--text-color);
+            border: 1px solid var(--border-color);
         }
 
         .modal-text h2 {
@@ -330,7 +370,29 @@
         .modal-text p {
             font-size: 1.2rem;
             line-height: 1.6;
-            color: #444;
+            color: var(--text-color);
+            opacity: 0.8;
+        }
+
+        .modal-palette {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 6px;
+            padding: 10px;
+            background: var(--header-bg);
+            backdrop-filter: blur(10px);
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            z-index: 2100;
+            border: 1px solid var(--border-color);
+        }
+
+        .modal-palette .swatch {
+            width: 24px;
+            height: 24px;
         }
 
         .modal-actions {
@@ -344,26 +406,6 @@
             max-width: 200px;
             padding: 0.8rem 1.5rem;
             font-size: 1rem;
-        }
-
-        .modal-palette {
-            position: fixed;
-            top: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 6px;
-            padding: 10px;
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(10px);
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            z-index: 2100;
-        }
-
-        .modal-palette .swatch {
-            width: 24px;
-            height: 24px;
         }
 
         .btn {
@@ -427,7 +469,15 @@
 
     <div class="controls">
         <input type="text" id="searchInput" placeholder="Search...">
+        
         <div class="settings-container">
+            <button class="theme-toggle-btn" id="themeToggle" title="Toggle Dark/Light Mode">
+                <!-- Moon icon -->
+                <svg id="moonIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                <!-- Sun icon -->
+                <svg id="sunIcon" style="display:none;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+            </button>
+
             <button class="settings-btn" id="settingsBtn" title="Grid Settings">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <circle cx="12" cy="12" r="3"></circle>
@@ -453,7 +503,7 @@
         <div id="modalColorPalette"></div>
     </div>
     <div id="modalContent" class="modal-content">
-        <div class="modal-text" onclick="event.stopPropagation()">
+        <div class="modal-text">
             <h2 id="modalTitle">Texture Preview</h2>
             <p>This is a preview of how the texture looks with your chosen background color. You can use this to visualize how typography and UI elements will appear over this pattern.</p>
             <div class="modal-actions">
@@ -553,8 +603,28 @@
     const modalContent = document.getElementById('modalContent');
     const settingsBtn = document.getElementById('settingsBtn');
     const settingsDropdown = document.getElementById('settingsDropdown');
+    const themeToggle = document.getElementById('themeToggle');
+    const moonIcon = document.getElementById('moonIcon');
+    const sunIcon = document.getElementById('sunIcon');
 
     let currentColor = '#f4f4f9';
+
+    function initTheme() {
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        if (savedTheme === 'dark') {
+            document.body.classList.add('dark-mode');
+            moonIcon.style.display = 'none';
+            sunIcon.style.display = 'block';
+        }
+
+        themeToggle.onclick = () => {
+            document.body.classList.toggle('dark-mode');
+            const isDark = document.body.classList.contains('dark-mode');
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+            moonIcon.style.display = isDark ? 'none' : 'block';
+            sunIcon.style.display = isDark ? 'block' : 'none';
+        };
+    }
 
     function initHeaderScroll() {
         window.addEventListener('scroll', () => {
@@ -684,6 +754,7 @@
     searchInput.addEventListener('input', (e) => renderTextures(e.target.value));
     bgColorInput.addEventListener('input', (e) => updateAllBackgrounds(e.target.value));
 
+    initTheme();
     initHeaderScroll();
     initSettings();
     renderPalette();
