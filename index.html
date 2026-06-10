@@ -297,7 +297,7 @@
         .preview-box {
             width: 100%;
             aspect-ratio: 16 / 9;
-            background-color: #eee;
+            background-color: rgb(209, 213, 219);
             border-bottom: 1px solid var(--border-color);
             cursor: pointer;
             background-repeat: repeat;
@@ -463,7 +463,7 @@
             <div id="colorPalette"></div>
             <div class="swatch swatch-custom" title="Pick custom color">
                 Custom
-                <input type="color" id="bgColor" value="#f4f4f9">
+                <input type="color" id="bgColor" value="#D1D5DB">
             </div>
         </div>
     </div>
@@ -608,7 +608,7 @@
     const moonIcon = document.getElementById('moonIcon');
     const sunIcon = document.getElementById('sunIcon');
 
-    let currentColor = '#f4f4f9';
+    let currentColor = 'rgb(209, 213, 219)';
 
     function initTheme() {
         const savedTheme = localStorage.getItem('theme') || 'light';
